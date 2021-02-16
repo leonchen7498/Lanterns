@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private int currentLives;
     private Vector2 checkpointPosition;
     private List<Collision2D> dangerousCollisions;
+    private List<Collider2D> shadowCollisions;
     private bool spriteVisible = true;
     private bool canBlink = true;
     private Color spriteColor;
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
         currentLives = lives;
         checkpointPosition = transform.position;
         dangerousCollisions = new List<Collision2D>();
+        shadowCollisions = new List<Collider2D>();
         spriteColor = spriteRenderer.color;
     }
 
@@ -39,7 +41,7 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (dangerousCollisions.Count > 0)
+        if (dangerousCollisions.Count > 0 || shadowCollisions.Count > 0)
         {
             LoseLife();
         }
@@ -53,11 +55,27 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == Constants.Tags.Shadow)
+        {
+            shadowCollisions.Add(collision);
+        }
+    }
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == Constants.Tags.Hazard)
         {
             dangerousCollisions.Remove(collision);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == Constants.Tags.Shadow)
+        {
+            shadowCollisions.Remove(collision);
         }
     }
 

@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 220069399693460533}
   - component: {fileID: 6897577703276736442}
   - component: {fileID: 1827883867801922492}
+  - component: {fileID: 3073639171086563262}
+  - component: {fileID: 7515870861449671988}
+  - component: {fileID: 896411272395181516}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -63,6 +66,62 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 5
+--- !u!58 &3073639171086563262
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14830422798003209}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!114 &7515870861449671988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14830422798003209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb652ffa73e087b48a3ece853b1af600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 3
+  invulnerableTimer: 3
+  blinkInterval: 0.2
+  spriteRenderer: {fileID: 2694685235337872296}
+  noDamageSprite: {fileID: -2413806693520163455, guid: 4adeaf2d2b1c7417e89f026626d8264f, type: 3}
+  lightDamagedSprite: {fileID: 21300000, guid: d4f055b06dd014c46b34671299405811, type: 3}
+  heavyDamagedSprite: {fileID: 21300000, guid: 7d8016870776eb54da17dfa27f3c8ef9, type: 3}
+--- !u!50 &896411272395181516
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14830422798003209}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0.03
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &642197751841479319
 GameObject:
   m_ObjectHideFlags: 0

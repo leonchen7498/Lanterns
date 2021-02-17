@@ -84,12 +84,12 @@ public class CutsceneManager : MonoBehaviour
 
     private IEnumerator NextLine()
     {
-        int[] prevNumbers = contents.lines[currentIndex].canvasIndexNumbers;
         currentIndex++;
-        int[] currentNumbers = contents.lines[currentIndex].canvasIndexNumbers;
 
         if (currentIndex <= contents.lines.Length - 1)
         {
+            int[] currentNumbers = contents.lines[currentIndex].canvasIndexNumbers;
+            int[] prevNumbers = contents.lines[currentIndex - 1].canvasIndexNumbers;
             tmp.text = "";
             if (prevNumbers != currentNumbers)
             {

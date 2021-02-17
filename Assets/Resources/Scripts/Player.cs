@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     public Sprite noDamageSprite;
     public Sprite lightDamagedSprite;
     public Sprite heavyDamagedSprite;
+    public GameObject parentGameObject;
 
     private bool invulnerable;
     private int currentLives;
@@ -24,7 +25,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         currentLives = lives;
-        checkpointPosition = transform.position;
+        checkpointPosition = parentGameObject.transform.position;
         dangerousCollisions = new List<Collision2D>();
         shadowCollisions = new List<Collider2D>();
         spriteColor = spriteRenderer.color;
@@ -107,7 +108,7 @@ public class Player : MonoBehaviour
     private void Respawn()
     {
         //maybe play an animation?
-        transform.position = checkpointPosition;
+        parentGameObject.transform.position = checkpointPosition;
         spriteRenderer.sprite = noDamageSprite;
         currentLives = lives;
     }

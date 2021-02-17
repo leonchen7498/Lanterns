@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private InputMaster controls;
 
     [Header("Basic Movement")]
+    private Rigidbody2D rb = null;
     public float movementSpeed = 10;
     private Vector2 direction;
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     //Runs before all Start functions
     private void Awake() {
         lanterns = new List<LanternBehaviour>();
+        rb = GetComponent<Rigidbody2D>();
         //Ensures that the inputs have been initialized
         if (controls == null)
             controls = new InputMaster();
@@ -33,12 +35,6 @@ public class PlayerController : MonoBehaviour
     }
     private void OnDisable() {
         controls.Disable();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -79,7 +75,10 @@ public class PlayerController : MonoBehaviour
 
     //Movement is handled here for a smoother experience.
     private void FixedUpdate() {
-        transform.Translate(direction * movementSpeed * Time.fixedDeltaTime);
+        //I made it so the vertical movement is slower cus idk, it seemed weird that it moves vertically so quick -leon uwu
+        direction.y = direction.y / 1.5f;
+        rb.velocity = direction * movementSpeed * Time.fixedDeltaTime;
+        //transform.Translate(direction * movementSpeed * Time.fixedDeltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -132,6 +131,8 @@ public class PlayerController : MonoBehaviour
         foreach (Transform item in lanternsToAvoid) {
             avoidanceMove += (Vector2)(lantern.transform.position - item.position);
         }
+        if (Vector2.Distance(lantern.transform.position, transform.position) < lanternSpacing)
+            avoidanceMove += (Vector2)(lantern.transform.position - transform.position);
 
         if (lanternsToAvoid.Count > 0) {
             avoidanceMove /= lanternsToAvoid.Count;

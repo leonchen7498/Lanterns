@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
 
     //Movement is handled here for a smoother experience.
     private void FixedUpdate() {
+        //I made it so the vertical movement is slower cus idk, it seemed weird that it moves vertically so quick -leon uwu
+        direction.y = direction.y / 1.5f;
         rb.velocity = direction * movementSpeed * Time.fixedDeltaTime;
         //transform.Translate(direction * movementSpeed * Time.fixedDeltaTime);
     }

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,14 +16,13 @@ public class CutsceneManager : MonoBehaviour
 
     //Required components. Automatically aquired in SceneController_OnAfterSceneLoad()
     private CutsceneContents contents;
-    private CanvasGroup imageCanvasGroup;
     [SerializeField] private TextMeshProUGUI tmp;
 
     //Variables for internal logic
     private int currentIndex;
     private bool isTyping;
     private bool isFading;
-    private bool isReplacingSprite;
+    private int replacingGroupsCount = 0;
 
     private void OnEnable()
     {
@@ -73,22 +73,43 @@ public class CutsceneManager : MonoBehaviour
     private void StartCutscene()
     {
         currentIndex = 0;
-        imageCanvasGroup = contents.canvases[0];
+        List<CanvasGroup> initialCanvases = new List<CanvasGroup>();
+        foreach (int index in contents.lines[0].canvasIndexNumbers)
+        {
+            initialCanvases.Add(contents.canvases[index]);
+        }
         contents.canvases[0].alpha = 1;
         StartCoroutine(TypeText(contents.lines[0].text));
     }
 
     private IEnumerator NextLine()
     {
+        int[] prevNumbers = contents.lines[currentIndex].canvasIndexNumbers;
         currentIndex++;
-        if(currentIndex <= contents.lines.Length - 1)
+        int[] currentNumbers = contents.lines[currentIndex].canvasIndexNumbers;
+
+        if (currentIndex <= contents.lines.Length - 1)
         {
             tmp.text = "";
-            if ((contents.lines[currentIndex-1].canvasIndexNumber != contents.lines[currentIndex].canvasIndexNumber))
+            if (prevNumbers != currentNumbers)
             {
-                isReplacingSprite = true;
-                StartCoroutine(CanvasReplacingFade(contents.canvases[currentIndex]));
-                while (isReplacingSprite)
+                var toAdd = currentNumbers.Except(prevNumbers);
+                var toDelete = prevNumbers.Except(currentNumbers);
+
+                List<CanvasGroup> canvasGroupsToAdd = new List<CanvasGroup>();
+                foreach (int index in toAdd)
+                {
+                    canvasGroupsToAdd.Add(contents.canvases[index]);
+                }
+                List<CanvasGroup> canvasGroupsToDelete = new List<CanvasGroup>();
+                foreach (int index in toDelete)
+                {
+                    canvasGroupsToDelete.Add(contents.canvases[index]);
+                }
+
+                StartCoroutine(CanvasReplacingFade(canvasGroupsToAdd, canvasGroupsToDelete));
+
+                while (replacingGroupsCount > 0)
                 {
                     yield return new WaitForEndOfFrame();
                 }
@@ -121,40 +142,53 @@ public class CutsceneManager : MonoBehaviour
         yield return null;
     }
 
-    private IEnumerator CanvasReplacingFade(CanvasGroup newCanvasGroup)
+    private IEnumerator CanvasReplacingFade(List<CanvasGroup> incomingCanvasGroups, List<CanvasGroup> outgoingCanvasGroups)
     {
         //This Coroutine fades out a sprite from view, changes the sprite, and fades the image back in.
-        isReplacingSprite = true;
+        replacingGroupsCount++;
 
         isFading = true;
-        StartCoroutine(Fade(0f));
-        while (isFading)
+        if (outgoingCanvasGroups.Count > 0)
         {
-            yield return new WaitForEndOfFrame();
-        }
+            foreach (CanvasGroup group in outgoingCanvasGroups)
+            {
+                StartCoroutine(Fade(0f, group));
+            }
 
-        imageCanvasGroup = newCanvasGroup;
+            while (isFading)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+        }
 
         isFading = true;
-        imageCanvasGroup = contents.canvases[currentIndex];
-        StartCoroutine(Fade(1f));
-        while (isFading)
-        {
-            yield return new WaitForEndOfFrame();
-        }
 
-        isReplacingSprite = false;
+        if (incomingCanvasGroups.Count > 0)
+        {
+            foreach (CanvasGroup group in incomingCanvasGroups)
+            {
+                StartCoroutine(Fade(1f, group));
+            }
+
+            while (isFading)
+            {
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        isFading = false;
+
+        replacingGroupsCount--;
     }
 
-    private IEnumerator Fade(float finalAlpha)
+    private IEnumerator Fade(float finalAlpha, CanvasGroup fadingGroup)
     {
         //Generic fading Coroutine.
 
         isFading = true;
-        float fadeSpeed = Mathf.Abs(imageCanvasGroup.alpha - finalAlpha) / fadeTime;
-        while (!Mathf.Approximately(imageCanvasGroup.alpha, finalAlpha))
+        float fadeSpeed = Mathf.Abs(fadingGroup.alpha - finalAlpha) / fadeTime;
+        while (!Mathf.Approximately(fadingGroup.alpha, finalAlpha))
         {
-            imageCanvasGroup.alpha = Mathf.MoveTowards(imageCanvasGroup.alpha, finalAlpha, fadeTime * Time.deltaTime);
+            fadingGroup.alpha = Mathf.MoveTowards(fadingGroup.alpha, finalAlpha, fadeTime * Time.deltaTime);
             yield return null;
         }
         isFading = false;

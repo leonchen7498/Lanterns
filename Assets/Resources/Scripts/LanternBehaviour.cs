@@ -38,9 +38,6 @@ public class LanternBehaviour : MonoBehaviour
 
     public void Activate (Transform target) {
         isActive = true;
-        SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
-        renderer.material.color = Color.red;
-
         this.target = target;
     }
 

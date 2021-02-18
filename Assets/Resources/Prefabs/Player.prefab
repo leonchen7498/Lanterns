@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c5a20404435aab40bcbed59493000bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2627212033662391258}
   movementSpeed: 500
   dashCooldown: 3
   lanternSpacing: 2.5
@@ -98,7 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5279221732220056204}
   - component: {fileID: 2627212033662391258}
-  - component: {fileID: 3049592108055810923}
+  - component: {fileID: 1051099714992635952}
   m_Layer: 0
   m_Name: Hitbox
   m_TagString: Player
@@ -140,8 +141,8 @@ MonoBehaviour:
   lightDamagedSprite: {fileID: -308732120438928244, guid: d08cc8e11500e5b4b9bbbded61d20578, type: 3}
   heavyDamagedSprite: {fileID: -5676820316392537851, guid: d08cc8e11500e5b4b9bbbded61d20578, type: 3}
   parentGameObject: {fileID: 14830422798003209}
---- !u!61 &3049592108055810923
-BoxCollider2D:
+--- !u!60 &1051099714992635952
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -153,7 +154,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.030966163, y: 0.34062767}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -163,9 +164,16 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.3005779, y: 4.406275}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.6888749, y: 1.3986592}
+      - {x: 0.02330985, y: 1.5594363}
+      - {x: -0.59652853, y: 1.4727248}
+      - {x: -1.0909156, y: 1.229756}
+      - {x: -0.84419346, y: -1.2519041}
+      - {x: 0.028147746, y: -1.4046338}
+      - {x: 0.8325387, y: -1.251904}
+      - {x: 1.0453684, y: 1.1546068}
 --- !u!1 &5319281213130449073
 GameObject:
   m_ObjectHideFlags: 0

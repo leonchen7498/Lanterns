@@ -80,6 +80,12 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetLivesToMax()
+    {
+        currentLives = lives;
+        spriteRenderer.sprite = noDamageSprite;
+    }
+
     private void LoseLife()
     {
         currentLives--;

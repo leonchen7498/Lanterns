@@ -1,9 +1,12 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public Player player;
+
     //User input
     private InputMaster controls;
 
@@ -27,6 +30,12 @@ public class PlayerController : MonoBehaviour
         //Ensures that the inputs have been initialized
         if (controls == null)
             controls = new InputMaster();
+
+        controls.Player.Glow.performed += attack => Attack();
+
+        Camera camera = FindObjectOfType<Camera>();
+        camera.transform.parent = transform;
+        camera.transform.localPosition = new Vector3(0, 0, -3);
     }
 
     //Controls must be enabled and disabled with the object, otherwise it will not be read.
@@ -90,10 +99,16 @@ public class PlayerController : MonoBehaviour
             if (!lantern.GetActive()) {
                 print("Activated lantern");
 
+                player.SetLivesToMax();
                 lantern.Activate(transform);
                 lanterns.Add(lantern);
             }
         }
+    }
+
+    private void Attack()
+    {
+
     }
 
     private List<Transform> GetNearbyObjects (LanternBehaviour lantern) {

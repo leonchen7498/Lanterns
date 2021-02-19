@@ -156,4 +156,8 @@ public class PlayerController : MonoBehaviour
 
         return cohesionMove + avoidanceMove;
     }
+
+    public int GetLanternCount() {
+        return lanterns.Count;
+    }
 }

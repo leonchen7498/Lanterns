@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public event Action OnLanternCollected;
     public event Action OnPlayerRespawn;
     public int currentLanternCount;
+    public PlayerController activePlayer;
 
     private void Awake()
     {

@@ -326,6 +326,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343892433}
   - component: {fileID: 343892432}
+  - component: {fileID: 343892434}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -362,6 +363,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &343892434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343892431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec745e8fdd0d184292b5a8748e70dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentLanternCount: 0
+  activePlayer: {fileID: 0}
 --- !u!1 &385319494
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,6 +389,7 @@ GameObject:
   - component: {fileID: 385319497}
   - component: {fileID: 385319496}
   - component: {fileID: 385319495}
+  - component: {fileID: 385319499}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -478,6 +494,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &385319499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 385319494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65f52f807328374da9c8450d401d0b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneController: {fileID: 343892432}
+  followTarget: {fileID: 0}
+  followSpeed: 0.05
+  projectionSize: 15
+  offsetY: 0
+  howFarAhead: 5
 --- !u!1 &1246927171
 GameObject:
   m_ObjectHideFlags: 0

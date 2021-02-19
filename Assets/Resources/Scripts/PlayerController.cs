@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     [Header("Basic Movement")]
     private Rigidbody2D rb = null;
     public float movementSpeed = 10;
-    private Vector2 direction;
+    [HideInInspector] public Vector2 direction;
 
     [Header("Dash")]
     public float dashCooldown = 3f;
@@ -33,14 +33,17 @@ public class PlayerController : MonoBehaviour
 
         controls.Player.Glow.performed += attack => Attack();
 
+        /* //Old camera controls commented out.
         Camera camera = FindObjectOfType<Camera>();
         camera.transform.parent = transform;
         camera.transform.localPosition = new Vector3(0, 0, -3);
+        */
     }
 
     //Controls must be enabled and disabled with the object, otherwise it will not be read.
     private void OnEnable() {
         controls.Enable();
+        GameManager.instance.activePlayer = this;
     }
     private void OnDisable() {
         controls.Disable();
@@ -88,6 +91,8 @@ public class PlayerController : MonoBehaviour
         direction.y = direction.y / 1.5f;
         rb.velocity = direction * movementSpeed * Time.fixedDeltaTime;
         //transform.Translate(direction * movementSpeed * Time.fixedDeltaTime);
+
+        CameraController.instance.MoveCamera(); //Called within this frame update to sync the camera with the player. If done via its own script, camera lags a frame behind, causing stuttering.
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {

@@ -15,13 +15,10 @@ public class PlayerController : MonoBehaviour
     public float movementSpeed = 10;
     [HideInInspector] public Vector2 direction;
 
-    [Header("Dash")]
-    public float dashCooldown = 3f;
-    private float dashTimer = 0f;
-
     [Header("Lanterns")]
-    private List<LanternBehaviour> lanterns;
-    public float lanternSpacing = 1.5f;
+    private List<LanternBehaviour> lanterns;    //The list of lanterns.
+    public float lanternSpacing = 2f;           //How far the lanterns should stay from each other and the main lantern.
+    public float spacingWeightMultiplier = 2;   //Determines the ratio between cohesion and avoidance.
 
     //Runs before all Start functions
     private void Awake() {
@@ -55,33 +52,10 @@ public class PlayerController : MonoBehaviour
         direction = controls.Player.Movement.ReadValue<Vector2>();
 
         if (lanterns.Count > 0) {
-            /*
-            Vector3 averagePoint = Vector3.zero;
-            float tempX = 0;
-            float tempY = 0;
-            for (int i = 0; i < lanterns.Count; i++) {
-                tempX += lanterns[i].transform.position.x;
-                tempY += lanterns[i].transform.position.y;
-            }
-
-            Vector2 lanternsAveragePosition = new Vector2(tempX / lanterns.Count, tempY / lanterns.Count);
-            Vector2 groupAveragePosition = (lanternsAveragePosition + (Vector2)transform.position) / 2;
-            print(groupAveragePosition);
-            foreach (LanternBehaviour lantern in lanterns) {
-                lantern.Move(groupAveragePosition - (Vector2)lantern.transform.position);
-            }
-            */
-
             foreach (LanternBehaviour lantern in lanterns)
             {
                 lantern.Move(CalculateMove(lantern, GetNearbyObjects(lantern)));
             }
-        }
-
-
-        //Dash cooldown timer
-        if (dashTimer > dashCooldown) {
-            dashTimer -= Time.deltaTime;
         }
     }
 
@@ -105,7 +79,7 @@ public class PlayerController : MonoBehaviour
                 print("Activated lantern");
 
                 player.SetLivesToMax();
-                lantern.Activate(transform);
+                lantern.SetActivate(transform);
                 lanterns.Add(lantern);
 
                 GameManager.instance.LanternCollected(lanterns.Count); //Informs the GameManager that the player has gained a new lanterns, and reports the new amount.
@@ -161,8 +135,12 @@ public class PlayerController : MonoBehaviour
             avoidanceMove /= lanternsToAvoid.Count;
         }
 
+        //cohesionMove = Vector2.SmoothDamp(currentVelocity, cohesionMove, ref currentVelocity, smoothTime);
 
-        return cohesionMove + avoidanceMove;
+        //Smoothes out the movement.
+        Vector2 combinedMove = cohesionMove + (avoidanceMove * spacingWeightMultiplier);
+
+        return combinedMove;
     }
 
     public int GetLanternCount() {

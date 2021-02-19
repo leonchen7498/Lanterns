@@ -5,14 +5,18 @@ public class ChasingShadow : MonoBehaviour
 {
     public float speed = 5f;
     public float fadeTimer = 1f;
+    public float stunTimer = 3f;
     public GameObject spriteObject;
 
     private Vector3 originalPosition;
     private GameObject playerGameObject;
     private SpriteRenderer spriteRenderer;
     private bool chasing;
+    private bool isStunned;
+    private bool playerIsInArea;
 
     private Coroutine currentCoroutine;
+    private Coroutine stunCoroutine;
 
     void Start()
     {
@@ -24,9 +28,18 @@ public class ChasingShadow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isStunned)
+        {
+            return;
+        }
+
         if (chasing)
         {
             MoveTowardsPlayer();
+        }
+        else if (playerIsInArea)
+        {
+            StartChasing();
         }
     }
 
@@ -34,19 +47,13 @@ public class ChasingShadow : MonoBehaviour
     {
         if (collision.gameObject.tag == Constants.Tags.Player)
         {
-            if (playerGameObject == null)
+            playerGameObject = collision.gameObject;
+            playerIsInArea = true;
+
+            if (!isStunned)
             {
-                playerGameObject = collision.gameObject;
+                StartChasing();
             }
-
-            chasing = true;
-
-            if(currentCoroutine != null)
-            {
-                StopCoroutine(currentCoroutine);
-            }
-
-            currentCoroutine = StartCoroutine(FadeInSprite());
         }
     }
 
@@ -54,13 +61,29 @@ public class ChasingShadow : MonoBehaviour
     {
         if (collision.gameObject.tag == Constants.Tags.Player)
         {
-            if (currentCoroutine != null)
-            {
-                StopCoroutine(currentCoroutine);
-            }
+            StopCurrentCoroutine();
 
-            currentCoroutine = StartCoroutine(FadeOutSprite());
+            currentCoroutine = StartCoroutine(FadeOutSprite(false));
         }
+    }
+
+    public void AttackedByPlayer()
+    {
+        chasing = false;
+        isStunned = true;
+        StopCurrentCoroutine();
+        StopStunCoroutine();
+        
+        currentCoroutine = StartCoroutine(FadeOutSprite(true));
+        stunCoroutine = StartCoroutine(StunEnemy());
+    }
+
+    private void StartChasing()
+    {
+        chasing = true;
+        StopCurrentCoroutine();
+
+        currentCoroutine = StartCoroutine(FadeInSprite());
     }
 
     private IEnumerator FadeInSprite()
@@ -73,18 +96,45 @@ public class ChasingShadow : MonoBehaviour
 
         currentCoroutine = null;
     }
-    private IEnumerator FadeOutSprite()
+
+    private IEnumerator FadeOutSprite(bool isBeingAttacked)
     {
-        for (float f = spriteRenderer.color.a; f >= 0f; f -= Time.deltaTime / fadeTimer)
+        float speed = 1f;
+
+        if (isBeingAttacked)
+        {
+            speed = 10f;
+        }
+
+        for (float f = spriteRenderer.color.a; f >= 0f; f -= Time.deltaTime / fadeTimer * speed)
         {
             spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, f);
             yield return null;
         }
 
         currentCoroutine = null;
-        MoveBackToOriginalPosition();
+        spriteObject.transform.position = originalPosition;
+        chasing = false;
+
+        if (!isBeingAttacked)
+        {
+            playerIsInArea = false;
+        }
     }
 
+    private IEnumerator StunEnemy()
+    {
+        float f = 0;
+
+        while (f < stunTimer)
+        {
+            f += Time.deltaTime;
+            yield return null;
+        }
+
+        isStunned = false;
+        stunCoroutine = null;
+    }
 
     private void MoveTowardsPlayer()
     {
@@ -93,9 +143,19 @@ public class ChasingShadow : MonoBehaviour
         spriteObject.transform.position = Vector3.MoveTowards(spriteObject.transform.position, playerPosition, actualSpeed);
     }
 
-    private void MoveBackToOriginalPosition()
+    private void StopCurrentCoroutine()
     {
-        spriteObject.transform.position = originalPosition;
-        chasing = false;
+        if (currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+    }
+
+    private void StopStunCoroutine()
+    {
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
+        }
     }
 }

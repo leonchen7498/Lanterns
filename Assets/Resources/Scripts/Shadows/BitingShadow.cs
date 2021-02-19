@@ -7,14 +7,18 @@ public class BitingShadow : MonoBehaviour
     public float maxRange;
     public float speed = 5f;
     public float waitBeforeRestingAgain = 5f;
+    public float stunTimer = 3f;
     public GameObject spriteObject;
 
     private Vector3 originalPosition;
     private GameObject playerGameObject;
     private bool resting;
     private bool biting;
+    private bool isStunned;
+    private bool playerIsInArea;
 
     private Coroutine restCoroutine;
+    private Coroutine stunCoroutine;
 
     void Start()
     {
@@ -23,13 +27,31 @@ public class BitingShadow : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isStunned)
+        {
+            if (!resting)
+            {
+                MoveBack(true);
+            }
+
+            return;
+        }
+
         if (biting)
         {
             MoveTowardsPlayer();
         }
-        else if (!biting && !resting)
+        else
         {
-            MoveBack();
+            if (playerIsInArea)
+            {
+                StartBiting();
+            }
+
+            if (!resting)
+            {
+                MoveBack(false);
+            }
         }
     }
 
@@ -37,18 +59,13 @@ public class BitingShadow : MonoBehaviour
     {
         if (collision.gameObject.tag == Constants.Tags.Player)
         {
-            if (restCoroutine != null)
-            {
-                StopCoroutine(restCoroutine);
-            }
+            playerGameObject = collision.gameObject;
+            playerIsInArea = true;
 
-            if (playerGameObject == null)
+            if (!isStunned)
             {
-                playerGameObject = collision.gameObject;
+                StartBiting();
             }
-
-            biting = true;
-            resting = false;
         }
     }
 
@@ -57,7 +74,27 @@ public class BitingShadow : MonoBehaviour
         if (collision.gameObject.tag == Constants.Tags.Player)
         {
             restCoroutine = StartCoroutine(RestDelay());
+            playerIsInArea = false;
         }
+    }
+
+    private void StartBiting()
+    {
+        StopRestCoroutine();
+        biting = true;
+        resting = false;
+    }
+
+    public void AttackedByPlayer()
+    {
+        biting = false;
+        isStunned = true;
+        resting = false;
+
+        StopRestCoroutine();
+        StopStunCoroutine();
+
+        stunCoroutine = StartCoroutine(StunEnemy());
     }
 
     private IEnumerator RestDelay()
@@ -79,14 +116,51 @@ public class BitingShadow : MonoBehaviour
         }
     }
 
-    private void MoveBack()
+    private void MoveBack(bool isBeingAttacked)
     {
-        float actualSpeed = (speed / 2) * Time.deltaTime;
+        float speedMultiplier = 1f;
+
+        if (isBeingAttacked)
+        {
+            speedMultiplier = 10f;
+        }
+
+        float actualSpeed = speed / 2 * speedMultiplier * Time.deltaTime;
         spriteObject.transform.position = Vector3.MoveTowards(spriteObject.transform.position, originalPosition, actualSpeed);
 
         if (Vector3.Distance(spriteObject.transform.position, originalPosition) < 0.01f)
         {
             resting = true;
+        }
+    }
+
+    private IEnumerator StunEnemy()
+    {
+        float f = 0;
+
+        while (f < stunTimer)
+        {
+            f += Time.deltaTime;
+            yield return null;
+        }
+
+        isStunned = false;
+        stunCoroutine = null;
+    }
+
+    private void StopRestCoroutine()
+    {
+        if (restCoroutine != null)
+        {
+            StopCoroutine(restCoroutine);
+        }
+    }
+
+    private void StopStunCoroutine()
+    {
+        if (stunCoroutine != null)
+        {
+            StopCoroutine(stunCoroutine);
         }
     }
 }

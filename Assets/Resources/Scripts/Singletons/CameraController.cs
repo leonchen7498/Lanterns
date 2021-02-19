@@ -47,7 +47,8 @@ public class CameraController : MonoBehaviour
 
     private void SceneController_OnAfterSceneLoad()
     {
-        followTarget = GameManager.instance.activePlayer.gameObject.transform;
+        if(GameManager.instance.activePlayer != null)
+            followTarget = GameManager.instance.activePlayer.gameObject.transform;
     }
 
     //This function is called by the PlayerController script to sync up the camera's movement with the player better.

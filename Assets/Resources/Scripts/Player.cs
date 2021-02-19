@@ -117,6 +117,8 @@ public class Player : MonoBehaviour
         parentGameObject.transform.position = checkpointPosition;
         spriteRenderer.sprite = noDamageSprite;
         currentLives = lives;
+
+        GameManager.instance.PlayerRespawn(); //Informs the GameManager that the player is currently respawning. -Iffi
     }
 
     private IEnumerator StartInvulnerableTimer()

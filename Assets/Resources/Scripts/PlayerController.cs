@@ -104,6 +104,7 @@ public class PlayerController : MonoBehaviour
                 lanterns.Add(lantern);
 
                 GameManager.instance.LanternCollected(lanterns.Count); //Informs the GameManager that the player has gained a new lanterns, and reports the new amount.
+                lantern.TurnLightOnOrOff(false); //Fades out the light.
             }
         }
     }

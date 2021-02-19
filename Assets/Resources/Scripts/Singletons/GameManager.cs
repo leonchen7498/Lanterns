@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         //Singleton design
-        if (instance != null)
+        if (instance == null)
         {
             instance = this;
         }

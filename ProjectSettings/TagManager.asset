@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Hazard
   - Shadow
-  - Attack
   layers:
   - Default
   - TransparentFX

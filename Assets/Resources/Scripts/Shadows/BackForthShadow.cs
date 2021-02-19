@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BackForthShadow : MonoBehaviour
@@ -9,8 +11,6 @@ public class BackForthShadow : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 endPosition;
     private Vector3 currentGoalPosition;
-
-    private bool isAttacked;
 
     private float waitTimer;
 
@@ -27,55 +27,6 @@ public class BackForthShadow : MonoBehaviour
         if (EnemyCanMove())
         {
             Move();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(isAttacked)
-        {
-            return;
-        }
-
-        if (collision.gameObject.tag == Constants.Tags.Attack)
-        {
-            if (waitTimer < waitBetweenAttacks)
-            {
-                waitTimer = 0f;
-                return;
-            }
-
-            float distanceOfPlayerToOriginal = Vector3.Distance(collision.transform.position, originalPosition);
-            float distanceOfPlayerToEndPosition = Vector3.Distance(collision.transform.position, endPosition);
-
-            if (distanceOfPlayerToOriginal >= distanceOfPlayerToEndPosition)
-            {
-                float distanceOfShadowToEndPosition = Vector3.Distance(transform.position, endPosition);
-
-                if (distanceOfShadowToEndPosition >= distanceOfPlayerToEndPosition)
-                {
-                    currentGoalPosition = originalPosition;
-                }
-                else
-                {
-                    currentGoalPosition = endPosition;
-                }
-            }
-            else
-            {
-                float distanceOfShadowToOriginal = Vector3.Distance(transform.position, originalPosition);
-
-                if (distanceOfShadowToOriginal >= distanceOfPlayerToOriginal)
-                {
-                    currentGoalPosition = endPosition;
-                }
-                else
-                {
-                    currentGoalPosition = originalPosition;
-                }
-            }
-
-            isAttacked = true;
         }
     }
 
@@ -101,12 +52,6 @@ public class BackForthShadow : MonoBehaviour
     private void Move()
     {
         float actualSpeed = speed * Time.deltaTime;
-
-        if (isAttacked)
-        {
-            actualSpeed *= 5f;
-        }
-
         transform.position = Vector3.MoveTowards(transform.position, currentGoalPosition, actualSpeed);
 
         if (Vector3.Distance(transform.position, currentGoalPosition) < 0.01f)
@@ -120,7 +65,6 @@ public class BackForthShadow : MonoBehaviour
                 currentGoalPosition = endPosition;
             }
 
-            isAttacked = false;
             waitTimer = 0f;
         }
     }

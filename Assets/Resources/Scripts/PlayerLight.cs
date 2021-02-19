@@ -14,11 +14,11 @@ public class PlayerLight : MonoBehaviour
 
     private void OnEnable()
     {
-        //GameManager.instance.OnLanternCollected += GameManager_OnLanternCollected;
+        GameManager.instance.OnLanternCollected += GameManager_OnLanternCollected;
     }
     private void OnDisable()
     {
-        //GameManager.instance.OnLanternCollected -= GameManager_OnLanternCollected;
+        GameManager.instance.OnLanternCollected -= GameManager_OnLanternCollected;
     }
 
     private void GameManager_OnLanternCollected()

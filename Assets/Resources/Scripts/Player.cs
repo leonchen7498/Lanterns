@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public int lives = 3;
     public float invulnerableTimer = 3.0f;
     public float blinkInterval = 0.2f;
+    public float deathFadeTimer = 0.5f;
+    public float deathScreenTimer = 2f;
     public SpriteRenderer spriteRenderer;
     public Sprite noDamageSprite;
     public Sprite lightDamagedSprite;
     public Sprite heavyDamagedSprite;
     public GameObject parentGameObject;
+    public PlayerController controller;
+    public Image deathScreen;
 
     private bool invulnerable;
     private int currentLives;
@@ -80,10 +85,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetLivesToMax()
+    public void CollectLantern(Vector2 lanternPosition)
     {
         currentLives = lives;
         spriteRenderer.sprite = noDamageSprite;
+        checkpointPosition = lanternPosition;
     }
 
     private void LoseLife()
@@ -106,19 +112,61 @@ public class Player : MonoBehaviour
 
     private void TakeDamage(Sprite sprite)
     {
-        //maybe do something else? like instantly flashing light
         spriteRenderer.sprite = sprite;
         StartCoroutine(StartInvulnerableTimer());
     }
 
     private void Respawn()
     {
-        //maybe play an animation?
+        canBlink = false;
+        invulnerable = true;
+        StartCoroutine(FadeOut());
+        GameManager.instance.PlayerRespawn();
+    }
+
+    private IEnumerator FadeOut()
+    {
+        float totalTime = deathFadeTimer * 3 + deathScreenTimer;
+        controller.PlayerRespawn(totalTime);
+
+        for (float f = spriteRenderer.color.a; f >= 0f; f -= Time.deltaTime / deathFadeTimer)
+        {
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, f);
+            yield return null;
+        }
+
+        StartCoroutine(DeathScreen());
+    }
+
+    private IEnumerator DeathScreen()
+    {
+        for (float f = deathScreen.color.a; f <= 1f; f += Time.deltaTime / deathFadeTimer)
+        {
+            deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, f);
+            yield return null;
+        }
+        
         parentGameObject.transform.position = checkpointPosition;
         spriteRenderer.sprite = noDamageSprite;
         currentLives = lives;
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1f);
 
-        GameManager.instance.PlayerRespawn(); //Informs the GameManager that the player is currently respawning. -Iffi
+        float deathTimer = 0f;
+
+        while (deathTimer < deathScreenTimer)
+        {
+            deathTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        for (float f = deathScreen.color.a; f >= 0f; f -= Time.deltaTime / deathFadeTimer)
+        {
+            deathScreen.color = new Color(deathScreen.color.r, deathScreen.color.g, deathScreen.color.b, f);
+            yield return null;
+        }
+
+        invulnerable = false;
+        canBlink = true;
     }
 
     private IEnumerator StartInvulnerableTimer()

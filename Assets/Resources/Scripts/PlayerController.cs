@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb = null;
     public float movementSpeed = 10;
     [HideInInspector] public Vector2 direction;
+    private float originalGravityScale;
 
     [Header("Lanterns")]
     private List<LanternBehaviour> lanterns;    //The list of lanterns.
@@ -50,7 +51,9 @@ public class PlayerController : MonoBehaviour
         camera.transform.localPosition = new Vector3(0, 0, -3);
         */
 
+        attackGameObject.SetActive(false);
         canAttack = true;
+        originalGravityScale = rb.gravityScale;
     }
 
     //Controls must be enabled and disabled with the object, otherwise it will not be read.
@@ -66,6 +69,11 @@ public class PlayerController : MonoBehaviour
     void Update() {
         //Gets the current movement input value, used in FixedUpdate to move the player.
         direction = controls.Player.Movement.ReadValue<Vector2>();
+
+        if (direction != Vector2.zero && rb.gravityScale == 0)
+        {
+            rb.gravityScale = originalGravityScale;
+        }
 
         if (lanterns.Count > 0) {
             foreach (LanternBehaviour lantern in lanterns)
@@ -92,7 +100,7 @@ public class PlayerController : MonoBehaviour
             if (!lantern.GetActive()) {
                 print("Activated lantern");
 
-                player.SetLivesToMax();
+                player.CollectLantern(collision.gameObject.transform.position);
                 lantern.SetActivate(transform);
                 lanterns.Add(lantern);
 
@@ -118,6 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         for (float f = 0; f <= 1f; f += Time.deltaTime / attackGrowDuration)
         {
+            attackGameObject.SetActive(true);
             Vector3 scale = attackGameObject.transform.localScale;
             scale.x = f * attackScale;
             scale.y = f * attackScale;
@@ -162,6 +171,7 @@ public class PlayerController : MonoBehaviour
         Color originalColor = attackSpriteRenderer.color;
         originalColor.a = 1f;
         attackSpriteRenderer.color = originalColor;
+        attackGameObject.SetActive(false);
 
         StartCoroutine(StartAttackDelay());
     }
@@ -242,5 +252,25 @@ public class PlayerController : MonoBehaviour
 
     public int GetLanternCount() {
         return lanterns.Count;
+    }
+
+    public void PlayerRespawn(float respawnTimer)
+    {
+        rb.gravityScale = 0f;
+        controls.Disable();
+        StartCoroutine(WaitForRespawn(respawnTimer));
+    }
+
+    private IEnumerator WaitForRespawn(float respawnTimer)
+    {
+        float timer = 0f;
+
+        while (timer < respawnTimer)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        controls.Enable();
     }
 }

@@ -53,8 +53,8 @@ MonoBehaviour:
   player: {fileID: 2627212033662391258}
   movementSpeed: 500
   direction: {x: 0, y: 0}
-  dashCooldown: 3
   lanternSpacing: 2.5
+  spacingWeightMultiplier: 2
   attackSprites:
   - {fileID: 21300000, guid: 9ba4a99b5bd5e0449bd200873170c611, type: 3}
   - {fileID: 21300000, guid: 87341a2b9c61bae4998c25ddc834661c, type: 3}

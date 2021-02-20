@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     public float attackScale = 1f;
     private bool canAttack;
 
-    private Camera camera;
+    //private Camera camera;
 
     //Runs before all Start functions
     private void Awake() {

@@ -97,7 +97,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 5
   m_AngularDrag: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 20
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -166,11 +166,15 @@ MonoBehaviour:
   lives: 3
   invulnerableTimer: 3
   blinkInterval: 0.2
+  deathFadeTimer: 0.5
+  deathScreenTimer: 1
   spriteRenderer: {fileID: 2959937449752703507}
   noDamageSprite: {fileID: -2889037969800785683, guid: d08cc8e11500e5b4b9bbbded61d20578, type: 3}
   lightDamagedSprite: {fileID: -308732120438928244, guid: d08cc8e11500e5b4b9bbbded61d20578, type: 3}
   heavyDamagedSprite: {fileID: -5676820316392537851, guid: d08cc8e11500e5b4b9bbbded61d20578, type: 3}
   parentGameObject: {fileID: 14830422798003209}
+  controller: {fileID: 0}
+  deathScreen: {fileID: 0}
 --- !u!60 &1051099714992635952
 PolygonCollider2D:
   m_ObjectHideFlags: 0

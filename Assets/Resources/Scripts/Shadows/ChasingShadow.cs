@@ -141,6 +141,7 @@ public class ChasingShadow : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
+        spriteObject.transform.right = playerGameObject.transform.position - spriteObject.transform.position;
         Vector3 playerPosition = playerGameObject.transform.position;
         float actualSpeed = speed * Time.deltaTime;
         spriteObject.transform.position = Vector3.MoveTowards(spriteObject.transform.position, playerPosition, actualSpeed);

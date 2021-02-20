@@ -17,7 +17,7 @@ public class ShadowBlockade : MonoBehaviour
 
     private void CheckAmountOfLanterns()
     {
-        if (GameManager.instance.currentLanternCount >= amountOfLanternsToUnlock)
+        if (GameManager.instance.currentLanternCount >= amountOfLanternsToUnlock && gameObject.activeSelf)
         {
             StartCoroutine(FadeOutShadows());
         }
@@ -31,6 +31,7 @@ public class ShadowBlockade : MonoBehaviour
             yield return null;
         }
 
+        GameManager.instance.OnLanternCollected -= CheckAmountOfLanterns;
         gameObject.SetActive(false);
     }
 }

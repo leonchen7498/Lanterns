@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public float amountOfLanternsNeeded = 10f;
     private bool canAttack;
 
+    public List<AudioClip> attackSounds;
+    private AudioSource audioSource;
+
     //private Camera camera;
 
     //Runs before all Start functions
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         camera.transform.localPosition = new Vector3(0, 0, -3);
         */
 
+        audioSource = GetComponent<AudioSource>();
         attackGameObject.SetActive(false);
         originalGravityScale = rb.gravityScale;
     }
@@ -118,8 +122,11 @@ public class PlayerController : MonoBehaviour
         if (canAttack)
         {
             canAttack = false;
-            attackSpriteRenderer.sprite = attackSprites[UnityEngine.Random.Range(0, 2)];
+            attackSpriteRenderer.sprite = attackSprites[UnityEngine.Random.Range(0, attackSprites.Count)];
             attackGameObject.SetActive(true);
+
+            audioSource.clip = attackSounds[UnityEngine.Random.Range(0, attackSounds.Count)];
+            audioSource.Play();
 
             StartCoroutine(AttackTimer());
         }

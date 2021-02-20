@@ -58,12 +58,22 @@ MonoBehaviour:
   attackSprites:
   - {fileID: 21300000, guid: 9ba4a99b5bd5e0449bd200873170c611, type: 3}
   - {fileID: 21300000, guid: 87341a2b9c61bae4998c25ddc834661c, type: 3}
+  - {fileID: 21300000, guid: 917f42e23436a8543a9b31454d887b61, type: 3}
   attackGameObject: {fileID: 3890216896115980799}
   animator: {fileID: 0}
   attackSpriteRenderer: {fileID: 4827297742980063449}
   attackDelay: 5
   attackDuration: 2
   amountOfLanternsNeeded: 1
+  attackSounds:
+  - {fileID: 8300000, guid: 3147529950b68214db72f1c26fb27e73, type: 3}
+  - {fileID: 8300000, guid: 8c1c05520c56e4d4e9a60bb12dd2db12, type: 3}
+  - {fileID: 8300000, guid: 12bdcbc90c76af24894ba6e4964597eb, type: 3}
+  - {fileID: 8300000, guid: 1d76a7d8047322b468a381a95f3a94d7, type: 3}
+  - {fileID: 8300000, guid: 25bc7c5ddd525c74a801c597f86242ed, type: 3}
+  - {fileID: 8300000, guid: 98a6961a35eabf04f888031cdf5a1644, type: 3}
+  - {fileID: 8300000, guid: b2a9b9fcb21d76a42955191a89e508f5, type: 3}
+  - {fileID: 8300000, guid: f986926acf0e0da47ac61f460d592e3a, type: 3}
 --- !u!58 &1827883867801922492
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -551,6 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeTime: 1
   tmp: {fileID: 1945892978}
+  sceneToLoadAfter: Game
 --- !u!114 &1119473760
 MonoBehaviour:
   m_ObjectHideFlags: 0

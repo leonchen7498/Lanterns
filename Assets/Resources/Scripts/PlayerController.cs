@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         controls.Enable();
         GameManager.instance.activePlayer = this;
     }
+
     private void OnDisable() {
         controls.Disable();
     }

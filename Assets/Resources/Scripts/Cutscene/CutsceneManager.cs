@@ -24,6 +24,8 @@ public class CutsceneManager : MonoBehaviour
     private bool isFading;
     private int replacingGroupsCount = 0;
 
+    public string sceneToLoadAfter;
+
     private void OnEnable()
     {
         //Singleton design for ease of reference.
@@ -49,7 +51,7 @@ public class CutsceneManager : MonoBehaviour
     {
         //Cleanup.
         controls.Menu.Confirm.performed -= ctx => OnConfirm_performed();
-        SceneController.instance.OnAfterSceneLoad += SceneController_OnAfterSceneLoad;
+        SceneController.instance.OnAfterSceneLoad -= SceneController_OnAfterSceneLoad;
 
         controls.Disable();
     }
@@ -196,7 +198,6 @@ public class CutsceneManager : MonoBehaviour
 
     private void CutsceneComplete()
     {
-        //TODO: Figure out implementation
-        Debug.Log("The cutscene is over. No implementation is present beyond this point.");
+        SceneController.instance.FadeAndLoadScene(sceneToLoadAfter);
     }
 }

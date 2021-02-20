@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
 
     //Movement is handled here for a smoother experience.
     private void FixedUpdate() {
+        direction.y = direction.y * 1.5f;
         rb.velocity = direction * movementSpeed * Time.fixedDeltaTime;
         CameraController.instance.MoveCamera(); //Called within this frame update to sync the camera with the player. If done via its own script, camera lags a frame behind, causing stuttering.
     }

@@ -20598,10 +20598,6 @@ PrefabInstance:
       propertyPath: speed
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
-      propertyPath: spriteObject
-      value: 
-      objectReference: {fileID: 2036338292}
     - target: {fileID: 2936908543835439858, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_Name
       value: ChasingShadow
@@ -23781,7 +23777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439821, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439821, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23826,10 +23822,6 @@ PrefabInstance:
     - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: speed
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
-      propertyPath: spriteObject
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439858, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_Name
@@ -35183,7 +35175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439821, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439821, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35228,10 +35220,6 @@ PrefabInstance:
     - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: speed
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
-      propertyPath: spriteObject
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439858, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_Name
@@ -39552,7 +39540,6 @@ Transform:
   m_Children:
   - {fileID: 965468602}
   - {fileID: 1787944708}
-  - {fileID: 2036338294}
   - {fileID: 1151230640}
   - {fileID: 1551035149}
   m_Father: {fileID: 0}
@@ -40576,10 +40563,6 @@ PrefabInstance:
     - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: speed
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2936908543835439823, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
-      propertyPath: spriteObject
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2936908543835439858, guid: 6341b5feaa5d43c45b70def91a23502d, type: 3}
       propertyPath: m_Name
@@ -46237,88 +46220,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6441193169279716089, guid: e1643fa1fdd14ca4b9d7824d4ed94a40, type: 3}
   m_PrefabInstance: {fileID: 2035280385}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2036338292
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2036338294}
-  - component: {fileID: 2036338293}
-  m_Layer: 0
-  m_Name: ChasingWolf
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &2036338293
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036338292}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1587640411
-  m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -3159072519834835442, guid: 3a58ebf21b2180e4dbab2a4818fa54c7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 5.4, y: 2.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &2036338294
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2036338292}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7030963, w: 0.7110947}
-  m_LocalPosition: {x: 0.2608, y: -20.9903, z: 1053.3157}
-  m_LocalScale: {x: 2.302751, y: 2.302751, z: 2.3027508}
-  m_Children: []
-  m_Father: {fileID: 1697356980}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -270.648}
 --- !u!1 &2037705338
 GameObject:
   m_ObjectHideFlags: 0

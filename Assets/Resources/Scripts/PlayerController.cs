@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 50f;
     public float fadeOutTimer = 0.5f;
     public float attackScale = 1f;
+    public float amountOfLanternsNeeded = 10f;
     private bool canAttack;
 
     //private Camera camera;
@@ -52,7 +53,6 @@ public class PlayerController : MonoBehaviour
         */
 
         attackGameObject.SetActive(false);
-        canAttack = true;
         originalGravityScale = rb.gravityScale;
     }
 
@@ -103,6 +103,11 @@ public class PlayerController : MonoBehaviour
                 player.CollectLantern(collision.gameObject.transform.position);
                 lantern.SetActivate(transform);
                 lanterns.Add(lantern);
+
+                if (GetLanternCount() >= amountOfLanternsNeeded)
+                {
+                    canAttack = true;
+                }
 
                 GameManager.instance.LanternCollected(lanterns.Count); //Informs the GameManager that the player has gained a new lanterns, and reports the new amount.
                 lantern.TurnLightOnOrOff(false); //Fades out the light.

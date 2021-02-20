@@ -135,7 +135,15 @@ MonoBehaviour:
   movementSpeed: 5
   lightFadeTime: 2
   smoothTime: 0.5
-  collectedSound: {fileID: 0}
+  collectSounds:
+  - {fileID: 8300000, guid: c72706862528b9648abe28332e43bb19, type: 3}
+  - {fileID: 8300000, guid: 8939e698f19c751469c047f37d3f1b10, type: 3}
+  - {fileID: 8300000, guid: 3f74c408a2ecbc14abf46ef183a3e05d, type: 3}
+  - {fileID: 8300000, guid: 1a7873f94acc4da40abe3d4e54bba47e, type: 3}
+  - {fileID: 8300000, guid: 0ddad121298861143961714dc387d568, type: 3}
+  - {fileID: 8300000, guid: 545913deef54a84488a3f64ec3161d35, type: 3}
+  - {fileID: 8300000, guid: 45f2a35aff773de4ca9a9f7a02aa9b76, type: 3}
+  - {fileID: 8300000, guid: f66c7a039a602f141874ef48140b8080, type: 3}
 --- !u!50 &4782380067275927963
 Rigidbody2D:
   serializedVersion: 4
@@ -195,7 +203,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0

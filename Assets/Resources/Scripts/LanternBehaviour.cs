@@ -25,7 +25,7 @@ public class LanternBehaviour : MonoBehaviour
     private Vector2 targetVelocity = Vector2.zero;
     private Vector2 refVelocity = Vector2.zero;
 
-    public AudioClip collectSound;
+    public List<AudioClip> collectSounds;
     private AudioSource audioSource;
 
     private void Awake() {
@@ -97,9 +97,9 @@ public class LanternBehaviour : MonoBehaviour
 
     public void PlayCollectSound()
     {
-        if (collectSound != null)
+        if (collectSounds != null && collectSounds.Count > 0)
         {
-            audioSource.clip = collectSound;
+            audioSource.clip = collectSounds[Random.Range(0, collectSounds.Count)];
             audioSource.Play();
         }
     }

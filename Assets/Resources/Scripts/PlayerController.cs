@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
                 player.CollectLantern(collision.gameObject.transform.position);
                 lantern.SetActivate(transform);
                 lanterns.Add(lantern);
+                lantern.PlayCollectSound();
 
                 if (GetLanternCount() >= amountOfLanternsNeeded)
                 {

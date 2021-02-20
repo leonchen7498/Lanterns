@@ -25,13 +25,10 @@ public class PlayerController : MonoBehaviour
     [Header("Attack")]
     public List<Sprite> attackSprites;
     public GameObject attackGameObject;
+    public Animator animator;
     public SpriteRenderer attackSpriteRenderer;
     public float attackDelay = 5f;
-    public float attackGrowDuration = 0.5f;
-    public float attackDuration = 1f;
-    public float rotationSpeed = 50f;
-    public float fadeOutTimer = 0.5f;
-    public float attackScale = 1f;
+    public float attackDuration = 2f;
     public float amountOfLanternsNeeded = 10f;
     private bool canAttack;
 
@@ -121,88 +118,32 @@ public class PlayerController : MonoBehaviour
         {
             canAttack = false;
             attackSpriteRenderer.sprite = attackSprites[UnityEngine.Random.Range(0, 2)];
-
-            StartCoroutine(StartAttack());
-            StartCoroutine(RotatingAttack());
-        }
-    }
-
-    private IEnumerator StartAttack()
-    {
-        for (float f = 0; f <= 1f; f += Time.deltaTime / attackGrowDuration)
-        {
             attackGameObject.SetActive(true);
-            Vector3 scale = attackGameObject.transform.localScale;
-            scale.x = f * attackScale;
-            scale.y = f * attackScale;
 
-            attackGameObject.transform.localScale = scale;
-
-            yield return null;
+            StartCoroutine(AttackTimer());
         }
-
-        StartCoroutine(HoldAttack());
     }
 
-    private IEnumerator HoldAttack()
+    private IEnumerator AttackTimer()
     {
-        float timer = 0f;
+        float attackTimer = 0f;
 
-        while (timer < attackDuration)
+        while (attackTimer < attackDuration)
         {
-            timer += Time.deltaTime;
+            attackTimer += Time.deltaTime;
             yield return null;
         }
-
-        StartCoroutine(FadeOutAttack());
-    }
-
-    private IEnumerator FadeOutAttack()
-    {
-        for (float f = 1; f >= 0f; f -= Time.deltaTime / fadeOutTimer)
-        {
-            Color color = attackSpriteRenderer.color;
-            color.a = f;
-            attackSpriteRenderer.color = color;
-            yield return null;
-        }
-
-        Vector3 scale = attackGameObject.transform.localScale;
-        scale.x = 0f;
-        scale.y = 0f;
-
-        attackGameObject.transform.localScale = scale;
-
-        Color originalColor = attackSpriteRenderer.color;
-        originalColor.a = 1f;
-        attackSpriteRenderer.color = originalColor;
         attackGameObject.SetActive(false);
 
-        StartCoroutine(StartAttackDelay());
-    }
+        float attackDelayTimer = 0f;
 
-    private IEnumerator StartAttackDelay()
-    {
-        float timer = 0f;
-
-        while (timer < attackDelay)
+        while (attackDelayTimer < attackDelay)
         {
-            timer += Time.deltaTime;
+            attackDelayTimer += Time.deltaTime;
             yield return null;
         }
 
         canAttack = true;
-    }
-
-    private IEnumerator RotatingAttack()
-    {
-        attackGameObject.transform.localScale = new Vector3(0, 0, UnityEngine.Random.Range(0f, 1f));
-
-        for (float f = 0; f <= 1f; f += Time.deltaTime / (attackGrowDuration + attackDuration))
-        {
-            attackGameObject.transform.Rotate(0, 0, Time.deltaTime * rotationSpeed);
-            yield return null;
-        }
     }
 
     private List<Transform> GetNearbyObjects (LanternBehaviour lantern) {

@@ -59,13 +59,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9ba4a99b5bd5e0449bd200873170c611, type: 3}
   - {fileID: 21300000, guid: 87341a2b9c61bae4998c25ddc834661c, type: 3}
   attackGameObject: {fileID: 3890216896115980799}
+  animator: {fileID: 0}
   attackSpriteRenderer: {fileID: 4827297742980063449}
   attackDelay: 5
-  attackGrowDuration: 0.5
-  attackDuration: 1
-  rotationSpeed: 50
-  fadeOutTimer: 0.5
-  attackScale: 1
+  attackDuration: 2
+  amountOfLanternsNeeded: 1
 --- !u!58 &1827883867801922492
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -220,6 +218,7 @@ GameObject:
   - component: {fileID: 4827297742980063449}
   - component: {fileID: 4429048406593257501}
   - component: {fileID: 8845486812978398477}
+  - component: {fileID: 7762456958580303989}
   m_Layer: 0
   m_Name: Pattern
   m_TagString: Attack
@@ -329,6 +328,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &7762456958580303989
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3890216896115980799}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f87ed805460dedd48aaebfb700091af5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5319281213130449073
 GameObject:
   m_ObjectHideFlags: 0

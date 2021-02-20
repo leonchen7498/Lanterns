@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     //Singleton name
     public static GameManager instance;
 
+    public MusicManager musicManager;
+    public AudioSource audioSource;
+
     public event Action OnLanternCollected;
     public event Action OnPlayerRespawn;
 

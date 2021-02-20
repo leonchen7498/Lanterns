@@ -346,7 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3276756c8aaa9bd4897f4be8c899d742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSceneName: Cutscene
+  startingSceneName: Main Menu
   fadeTime: 1
   faderCanvasGroup: {fileID: 285103125}
 --- !u!4 &343892433
@@ -610,5 +610,5 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 999
   m_TargetDisplay: 0

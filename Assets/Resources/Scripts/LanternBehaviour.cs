@@ -25,10 +25,14 @@ public class LanternBehaviour : MonoBehaviour
     private Vector2 targetVelocity = Vector2.zero;
     private Vector2 refVelocity = Vector2.zero;
 
+    public AudioClip collectSound;
+    private AudioSource audioSource;
+
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
         initialInnerRadius = _light.pointLightInnerRadius;
         initialOuterRadius = _light.pointLightOuterRadius;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -89,5 +93,14 @@ public class LanternBehaviour : MonoBehaviour
             yield return null;
         }
         isLightFading = false;
+    }
+
+    public void PlayCollectSound()
+    {
+        if (collectSound != null)
+        {
+            audioSource.clip = collectSound;
+            audioSource.Play();
+        }
     }
 }

@@ -70,6 +70,7 @@ public class ChasingShadow : MonoBehaviour
     public void AttackedByPlayer()
     {
         chasing = false;
+        spriteObject.SetActive(false);
         isStunned = true;
         StopCurrentCoroutine();
         StopStunCoroutine();
@@ -81,6 +82,7 @@ public class ChasingShadow : MonoBehaviour
     private void StartChasing()
     {
         chasing = true;
+        spriteObject.SetActive(true);
         StopCurrentCoroutine();
 
         currentCoroutine = StartCoroutine(FadeInSprite());
@@ -103,7 +105,7 @@ public class ChasingShadow : MonoBehaviour
 
         if (isBeingAttacked)
         {
-            speed = 10f;
+            speed = 3f;
         }
 
         for (float f = spriteRenderer.color.a; f >= 0f; f -= Time.deltaTime / fadeTimer * speed)
@@ -115,6 +117,7 @@ public class ChasingShadow : MonoBehaviour
         currentCoroutine = null;
         spriteObject.transform.position = originalPosition;
         chasing = false;
+        spriteObject.SetActive(false);
 
         if (!isBeingAttacked)
         {

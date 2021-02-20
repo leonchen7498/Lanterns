@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4782380067275927963}
   _light: {fileID: 5853596209661646647}
-  movementSpeed: 11
+  movementSpeed: 5
   lightFadeTime: 2
 --- !u!50 &4782380067275927963
 Rigidbody2D:

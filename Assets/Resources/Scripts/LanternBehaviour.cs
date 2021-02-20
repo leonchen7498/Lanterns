@@ -17,7 +17,13 @@ public class LanternBehaviour : MonoBehaviour
     public float movementSpeed = 11;
     public float lightFadeTime = 2f;
 
+    public float smoothTime = 0.5f;         //Smoothes out the movements, preventing jittering.
+
     private Transform target;
+
+    private Vector2 currentVelocity = Vector2.zero;
+    private Vector2 targetVelocity = Vector2.zero;
+    private Vector2 refVelocity = Vector2.zero;
 
     private void Awake() {
         rb = GetComponent<Rigidbody2D>();
@@ -35,7 +41,8 @@ public class LanternBehaviour : MonoBehaviour
     }
 
     private void ActiveBehaviour () {
-
+        currentVelocity = Vector2.SmoothDamp(currentVelocity, targetVelocity, ref refVelocity, smoothTime);
+        transform.position += (Vector3)currentVelocity * movementSpeed * Time.deltaTime;
     }
 
     private void PassiveBehaviour () {
@@ -43,10 +50,11 @@ public class LanternBehaviour : MonoBehaviour
     }
 
     public void Move(Vector2 velocity) {
-        transform.position += (Vector3)velocity * movementSpeed * Time.deltaTime;
+        //transform.position += (Vector3)velocity * movementSpeed * Time.deltaTime;
+        targetVelocity = velocity;
     }
 
-    public void Activate (Transform target) {
+    public void SetActivate (Transform target) {
         isActive = true;
         this.target = target;
     }

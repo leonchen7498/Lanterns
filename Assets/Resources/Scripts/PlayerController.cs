@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb = null;
     public float movementSpeed = 10;
     [HideInInspector] public Vector2 direction;
-
-    [Header("Dash")]
-    public float dashCooldown = 3f;
-    private float dashTimer = 0f;
+    private float originalGravityScale;
 
     [Header("Lanterns")]
-    private List<LanternBehaviour> lanterns;
-    public float lanternSpacing = 1.5f;
+    private List<LanternBehaviour> lanterns;    //The list of lanterns.
+    public float lanternSpacing = 2f;           //How far the lanterns should stay from each other and the main lantern.
+    public float spacingWeightMultiplier = 2;   //Determines the ratio between cohesion and avoidance.
 
     [Header("Attack")]
     public List<Sprite> attackSprites;
@@ -53,7 +51,9 @@ public class PlayerController : MonoBehaviour
         camera.transform.localPosition = new Vector3(0, 0, -3);
         */
 
+        attackGameObject.SetActive(false);
         canAttack = true;
+        originalGravityScale = rb.gravityScale;
     }
 
     //Controls must be enabled and disabled with the object, otherwise it will not be read.
@@ -71,41 +71,21 @@ public class PlayerController : MonoBehaviour
         //Gets the current movement input value, used in FixedUpdate to move the player.
         direction = controls.Player.Movement.ReadValue<Vector2>();
 
+        if (direction != Vector2.zero && rb.gravityScale == 0)
+        {
+            rb.gravityScale = originalGravityScale;
+        }
+
         if (lanterns.Count > 0) {
-            /*
-            Vector3 averagePoint = Vector3.zero;
-            float tempX = 0;
-            float tempY = 0;
-            for (int i = 0; i < lanterns.Count; i++) {
-                tempX += lanterns[i].transform.position.x;
-                tempY += lanterns[i].transform.position.y;
-            }
-
-            Vector2 lanternsAveragePosition = new Vector2(tempX / lanterns.Count, tempY / lanterns.Count);
-            Vector2 groupAveragePosition = (lanternsAveragePosition + (Vector2)transform.position) / 2;
-            print(groupAveragePosition);
-            foreach (LanternBehaviour lantern in lanterns) {
-                lantern.Move(groupAveragePosition - (Vector2)lantern.transform.position);
-            }
-            */
-
             foreach (LanternBehaviour lantern in lanterns)
             {
                 lantern.Move(CalculateMove(lantern, GetNearbyObjects(lantern)));
             }
         }
-
-
-        //Dash cooldown timer
-        if (dashTimer > dashCooldown) {
-            dashTimer -= Time.deltaTime;
-        }
     }
 
     //Movement is handled here for a smoother experience.
     private void FixedUpdate() {
-        //I made it so the vertical movement is slower cus idk, it seemed weird that it moves vertically so quick -leon uwu
-        direction.y = direction.y / 1.5f;
         rb.velocity = direction * movementSpeed * Time.fixedDeltaTime;
         CameraController.instance.MoveCamera(); //Called within this frame update to sync the camera with the player. If done via its own script, camera lags a frame behind, causing stuttering.
     }
@@ -119,8 +99,8 @@ public class PlayerController : MonoBehaviour
             if (!lantern.GetActive()) {
                 print("Activated lantern");
 
-                player.SetLivesToMax();
-                lantern.Activate(transform);
+                player.CollectLantern(collision.gameObject.transform.position);
+                lantern.SetActivate(transform);
                 lanterns.Add(lantern);
 
                 GameManager.instance.LanternCollected(lanterns.Count); //Informs the GameManager that the player has gained a new lanterns, and reports the new amount.
@@ -145,6 +125,7 @@ public class PlayerController : MonoBehaviour
     {
         for (float f = 0; f <= 1f; f += Time.deltaTime / attackGrowDuration)
         {
+            attackGameObject.SetActive(true);
             Vector3 scale = attackGameObject.transform.localScale;
             scale.x = f * attackScale;
             scale.y = f * attackScale;
@@ -189,6 +170,7 @@ public class PlayerController : MonoBehaviour
         Color originalColor = attackSpriteRenderer.color;
         originalColor.a = 1f;
         attackSpriteRenderer.color = originalColor;
+        attackGameObject.SetActive(false);
 
         StartCoroutine(StartAttackDelay());
     }
@@ -259,11 +241,35 @@ public class PlayerController : MonoBehaviour
             avoidanceMove /= lanternsToAvoid.Count;
         }
 
+        //cohesionMove = Vector2.SmoothDamp(currentVelocity, cohesionMove, ref currentVelocity, smoothTime);
 
-        return cohesionMove + avoidanceMove;
+        //Smoothes out the movement.
+        Vector2 combinedMove = cohesionMove + (avoidanceMove * spacingWeightMultiplier);
+
+        return combinedMove;
     }
 
     public int GetLanternCount() {
         return lanterns.Count;
+    }
+
+    public void PlayerRespawn(float respawnTimer)
+    {
+        rb.gravityScale = 0f;
+        controls.Disable();
+        StartCoroutine(WaitForRespawn(respawnTimer));
+    }
+
+    private IEnumerator WaitForRespawn(float respawnTimer)
+    {
+        float timer = 0f;
+
+        while (timer < respawnTimer)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        controls.Enable();
     }
 }

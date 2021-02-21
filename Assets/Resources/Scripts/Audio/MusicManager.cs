@@ -6,6 +6,7 @@ public class MusicManager : MonoBehaviour
 {
     private AudioSource audioSource;
     public float fadeTime = 1f;
+    public float musicVolume = 0.4f;
 
     private void Awake()
     {
@@ -34,8 +35,6 @@ public class MusicManager : MonoBehaviour
 
     private IEnumerator TrackFader(AudioClip trackToFadeTo)
     {
-        float startVolume = audioSource.volume;
-
         while (!Mathf.Approximately(GameManager.instance.audioSource.volume, 0))
         {
             audioSource.volume = Mathf.MoveTowards(GameManager.instance.audioSource.volume, 0, fadeTime * Time.deltaTime);
@@ -43,9 +42,9 @@ public class MusicManager : MonoBehaviour
         }
         audioSource.clip = trackToFadeTo;
         audioSource.Play();
-        while (!Mathf.Approximately(GameManager.instance.audioSource.volume, startVolume))
+        while (!Mathf.Approximately(GameManager.instance.audioSource.volume, musicVolume))
         {
-            audioSource.volume = Mathf.MoveTowards(GameManager.instance.audioSource.volume, startVolume, fadeTime * Time.deltaTime);
+            audioSource.volume = Mathf.MoveTowards(GameManager.instance.audioSource.volume, musicVolume, fadeTime * Time.deltaTime);
             yield return null;
         }
         yield return null;

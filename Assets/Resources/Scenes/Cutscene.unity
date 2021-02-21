@@ -1307,10 +1307,10 @@ MonoBehaviour:
   - text: "The wolves, still ravenous, continue to chase after their lost warmth
       and light in the twilight And the Sun, suffering from her frozen wounds, won\u2019t
       last long without help "
-    canvasIndexNumbers: 07000000060000000800000009000000
+    canvasIndexNumbers: 060000000800000009000000
   - text: "And the Sun, suffering from her frozen wounds, won\u2019t last long without
       help"
-    canvasIndexNumbers: 000000000700000006000000080000000a000000
+    canvasIndexNumbers: 0000000006000000080000000a000000
   textSpeed: 0.02
 --- !u!1 &1156777635
 GameObject:
@@ -2173,7 +2173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 183}
+  m_AnchoredPosition: {x: 0, y: 180}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1945892978
@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -116.821594, y: 0, z: -183.93198, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

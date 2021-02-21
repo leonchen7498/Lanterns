@@ -850,14 +850,14 @@ MonoBehaviour:
   lines:
   - text: "In the far north where light\u2019s rays don\u2019t reach, there lived
       a pack of wolves. "
-    canvasIndexNumbers: 000000000100000002000000
+    canvasIndexNumbers: 0000000001000000020000000300000004000000
   - text: Each night, these wolves would shiver with cold. And each day, they would
       see the Sun travel the horizon.
     canvasIndexNumbers: 00000000010000000200000003000000
   - text: 'One night, the largest of the pack, the ferocious Kaldur, spoke up: '
-    canvasIndexNumbers: 0000000001000000020000000300000004000000
+    canvasIndexNumbers: 0000000001000000
   - text: Text line four
-    canvasIndexNumbers: 00000000
+    canvasIndexNumbers: 0000000004000000
   textSpeed: 0.04
 --- !u!1 &1156777635
 GameObject:

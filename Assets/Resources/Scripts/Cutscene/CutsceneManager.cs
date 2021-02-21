@@ -78,9 +78,14 @@ public class CutsceneManager : MonoBehaviour
         List<CanvasGroup> initialCanvases = new List<CanvasGroup>();
         foreach (int index in contents.lines[0].canvasIndexNumbers)
         {
+            //Debug.Log(index);
             initialCanvases.Add(contents.canvases[index]);
         }
-        contents.canvases[0].alpha = 1;
+        foreach(CanvasGroup cg in initialCanvases)
+        {
+            cg.alpha = 1;
+        }
+        //Debug.Log(contents.canvases[0]);
         StartCoroutine(TypeText(contents.lines[0].text));
     }
 

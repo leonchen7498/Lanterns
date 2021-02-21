@@ -277,6 +277,14 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CloseGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f5f0801-cf75-4955-bbc4-e0a42253be81"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -310,6 +318,17 @@ public class @InputMaster : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f33dc7c3-5bf6-4262-b78a-8d37dd748743"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseGame"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -354,6 +373,7 @@ public class @InputMaster : IInputActionCollection, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
+        m_Menu_CloseGame = m_Menu.FindAction("CloseGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -453,11 +473,13 @@ public class @InputMaster : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Confirm;
+    private readonly InputAction m_Menu_CloseGame;
     public struct MenuActions
     {
         private @InputMaster m_Wrapper;
         public MenuActions(@InputMaster wrapper) { m_Wrapper = wrapper; }
         public InputAction @Confirm => m_Wrapper.m_Menu_Confirm;
+        public InputAction @CloseGame => m_Wrapper.m_Menu_CloseGame;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -470,6 +492,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Confirm.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
                 @Confirm.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
                 @Confirm.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirm;
+                @CloseGame.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseGame;
+                @CloseGame.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseGame;
+                @CloseGame.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseGame;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -477,6 +502,9 @@ public class @InputMaster : IInputActionCollection, IDisposable
                 @Confirm.started += instance.OnConfirm;
                 @Confirm.performed += instance.OnConfirm;
                 @Confirm.canceled += instance.OnConfirm;
+                @CloseGame.started += instance.OnCloseGame;
+                @CloseGame.performed += instance.OnCloseGame;
+                @CloseGame.canceled += instance.OnCloseGame;
             }
         }
     }
@@ -508,5 +536,6 @@ public class @InputMaster : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnConfirm(InputAction.CallbackContext context);
+        void OnCloseGame(InputAction.CallbackContext context);
     }
 }

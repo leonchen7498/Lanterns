@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ChasingShadow : MonoBehaviour
@@ -7,6 +8,9 @@ public class ChasingShadow : MonoBehaviour
     public float fadeTimer = 1f;
     public float stunTimer = 3f;
     public GameObject spriteObject;
+    public List<AudioClip> startAttackSounds;
+    public List<AudioClip> getHitSounds;
+    private AudioSource audioSource;
 
     private Vector3 originalPosition;
     private GameObject playerGameObject;
@@ -14,6 +18,7 @@ public class ChasingShadow : MonoBehaviour
     private bool chasing;
     private bool isStunned;
     private bool playerIsInArea;
+    private float originalVolume;
 
     private Coroutine currentCoroutine;
     private Coroutine stunCoroutine;
@@ -24,6 +29,8 @@ public class ChasingShadow : MonoBehaviour
 
         spriteRenderer = spriteObject.GetComponent<SpriteRenderer>();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
+        audioSource = GetComponent<AudioSource>();
+        originalVolume = audioSource.volume;
     }
 
     void FixedUpdate()
@@ -69,6 +76,13 @@ public class ChasingShadow : MonoBehaviour
 
     public void AttackedByPlayer()
     {
+        if (!isStunned && getHitSounds != null && getHitSounds.Count > 0)
+        {
+            audioSource.volume = originalVolume / 2;
+            audioSource.clip = getHitSounds[Random.Range(0, getHitSounds.Count)];
+            audioSource.Play();
+        }
+
         chasing = false;
         spriteObject.SetActive(false);
         isStunned = true;
@@ -81,6 +95,13 @@ public class ChasingShadow : MonoBehaviour
 
     private void StartChasing()
     {
+        if (startAttackSounds != null && startAttackSounds.Count > 0)
+        {
+            audioSource.volume = originalVolume;
+            audioSource.clip = startAttackSounds[Random.Range(0, startAttackSounds.Count)];
+            audioSource.Play();
+        }
+
         chasing = true;
         spriteObject.SetActive(true);
         StopCurrentCoroutine();

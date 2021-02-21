@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1008804072440829149}
   - component: {fileID: 1008804072440829147}
   - component: {fileID: 1008804072440829146}
+  - component: {fileID: 8960308258507198541}
   m_Layer: 0
   m_Name: BitingShadow
   m_TagString: Untagged
@@ -66,6 +67,118 @@ MonoBehaviour:
   waitBeforeRestingAgain: 5
   stunTimer: 3
   spriteObject: {fileID: 1008804072896033600}
+  animator: {fileID: 4751980034618974465}
+  startAttackSounds:
+  - {fileID: 8300000, guid: 4c0f494375851a347888246b3b918cda, type: 3}
+  - {fileID: 8300000, guid: 57bf16806bc79f249ae71350431c5a37, type: 3}
+  - {fileID: 8300000, guid: 6c70854a2d3c050469b79ad3569b1591, type: 3}
+  - {fileID: 8300000, guid: 35f5218d8ccd78c45a03e278cc522240, type: 3}
+  - {fileID: 8300000, guid: 05f554ebaf163704aaf34beab3dfb958, type: 3}
+  - {fileID: 8300000, guid: 11218da6f05a0774e85daaf2555c2ac0, type: 3}
+  - {fileID: 8300000, guid: 39316322d3fcec346a24687bc3e42ea5, type: 3}
+  - {fileID: 8300000, guid: dfb81bfeb31256841b4a8dfba19fda4f, type: 3}
+  getHitSounds:
+  - {fileID: 8300000, guid: b98650b804a98124a91c6048d4bb74c8, type: 3}
+  - {fileID: 8300000, guid: f8f0d67ffed4e7445a1bb8872e9c2bfc, type: 3}
+  - {fileID: 8300000, guid: c619b506024745c40939fe5b2d8e9a4d, type: 3}
+  - {fileID: 8300000, guid: 79d8af8593ab6fa4c82766800412a20c, type: 3}
+  - {fileID: 8300000, guid: cf1793b0f470a3542b82ca9d996ba5d0, type: 3}
+--- !u!82 &8960308258507198541
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008804072440829148}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1008804072896033600
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,6 +191,7 @@ GameObject:
   - component: {fileID: 729570306445744387}
   - component: {fileID: 1008804072896033614}
   - component: {fileID: 5995718787593012445}
+  - component: {fileID: 4751980034618974465}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Shadow
@@ -139,7 +253,7 @@ SpriteRenderer:
   m_SortingLayerID: -1587640411
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 1100e3c502822f843b4471c149298f41, type: 3}
+  m_Sprite: {fileID: 3425711129409373639, guid: 6119a1c58051e19479b954e456ba078f, type: 3}
   m_Color: {r: 0.5176471, g: 0, b: 0.019607844, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -167,7 +281,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5.36, y: 3.24}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -175,10 +289,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: 0.80728316, y: 1.4949415}
+      - {x: -1.9664268, y: 0.42282966}
+      - {x: -1.5548185, y: -1.1525916}
+      - {x: 0.16343269, y: -1.0809159}
+      - {x: 1.0332508, y: 0.25997072}
+      - {x: 2.0031657, y: 0.030311704}
+      - {x: 2.326815, y: 0.7662885}
 --- !u!114 &5995718787593012445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +309,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bitingShadow: {fileID: 1008804072440829146}
+--- !u!95 &4751980034618974465
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1008804072896033600}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f95e02a204d807047b590d168d8dac76, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

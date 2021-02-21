@@ -1275,7 +1275,7 @@ MonoBehaviour:
   - {fileID: 366183987}
   - {fileID: 528561845}
   lines:
-  - text: "In the far north where light\u2019s rays don\u2019t reach, there lived
+  - text: "In the far north, where light\u2019s rays don\u2019t reach, there lived
       a pack of wolves. "
     canvasIndexNumbers: 000000000100000002000000
   - text: Each night, these wolves would shiver with cold. And each day, they would
@@ -1284,32 +1284,31 @@ MonoBehaviour:
   - text: 'One night, the largest of the pack, the ferocious Kaldur, spoke up: '
     canvasIndexNumbers: 0000000001000000020000000300000004000000
   - text: "\u201CThe Sun cares not for us, and she\u2019s left our land cold and
-      barren. \u201CAnd because of that, we have long suffered "
+      barren. And because of that, we have long suffered\""
     canvasIndexNumbers: 0000000001000000020000000300000004000000
-  - text: "\u201COur stomachs are empty, and our paws are cold \u201CSo I suggest
-      a plan to you my pack: "
+  - text: "\u201COur stomachs are empty, and our paws are cold. So I suggest a plan
+      to you my pack:\""
     canvasIndexNumbers: 0000000001000000020000000300000004000000
-  - text: "\u201CBefore the morning comes, we shall travel south \u201CAnd when the
-      Sun would once more pass us by, we\u2019ll devour her! "
+  - text: "\u201CBefore the morning comes, we shall travel south. And when the Sun
+      would once more pass us by, we shall devour her!\""
     canvasIndexNumbers: 0000000001000000020000000300000004000000
   - text: "\u201COur bellies will be filled with warmth, and our hunger sated once
       and for all.\u201D "
     canvasIndexNumbers: 0000000001000000020000000300000004000000
   - text: And so the wolves traveled south.
     canvasIndexNumbers: 000000000100000006000000
-  - text: 'And when the Sun appeared from over the horizon, the wolves launched their
-      ambush! With claw and fang they struck at their prey, hoping to eat up the
-      warming light. '
+  - text: And when the Sun appeared from over the horizon, the wolves launched their
+      ambush! With claw and fang they struck at their prey, hoping to consume the
+      warming light.
     canvasIndexNumbers: 00000000010000000500000006000000
-  - text: "Hearing her sister\u2019s struggle, the Moon turned around to rush to
-      the Sun\u2019s aid"
+  - text: "Hearing the Sun\u2019s struggle, the ever-vigilant Moon turned around
+      to rush to her sister's aid."
     canvasIndexNumbers: 00000000070000000600000008000000
-  - text: "The wolves, still ravenous, continue to chase after their lost warmth
-      and light in the twilight And the Sun, suffering from her frozen wounds, won\u2019t
-      last long without help "
+  - text: The wolves, still ravenous, continue to chase after their lost warmth and
+      light in the twilight.
     canvasIndexNumbers: 060000000800000009000000
   - text: "And the Sun, suffering from her frozen wounds, won\u2019t last long without
-      help"
+      help..."
     canvasIndexNumbers: 0000000006000000080000000a000000
   textSpeed: 0.02
 --- !u!1 &1156777635

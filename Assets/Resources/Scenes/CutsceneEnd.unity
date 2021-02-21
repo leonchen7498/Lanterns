@@ -2283,12 +2283,12 @@ MonoBehaviour:
   - {fileID: 1364181533}
   - {fileID: 27002751}
   lines:
-  - text: Little by little, small lights lit up the night sky
+  - text: Little by little, small lights lit up the night sky.
     canvasIndexNumbers: 00000000
-  - text: 'As thousands of lanterns sent to the night sky gathered together '
+  - text: Thousands and thousands of lanterns, sent to the night sky gathered together!
     canvasIndexNumbers: 0000000001000000
-  - text: 'These lights, though weak on their own, when joined together, could heal
-      the wounded sun '
+  - text: These lights, though weak on their own, when joined together, could heal
+      the wounded Sun.
     canvasIndexNumbers: 00000000010000000200000004000000
   - text: 
     canvasIndexNumbers: 0000000001000000020000000300000004000000
@@ -2297,45 +2297,45 @@ MonoBehaviour:
       the Sun said. \u201CCan you not see the damage that you\u2019ve done?\u201D "
     canvasIndexNumbers: 02000000030000000400000005000000
   - text: "Kaldur, the largest of the pack, responded: \u201COur homes are far in
-      the north, where your light doesn\u2019t reach. \u201CAll we wanted was to
-      have even once what the others have each day.\u201D "
+      the north, where your light doesn\u2019t reach. All we wanted was to have even
+      once what the others have each day.\u201D"
     canvasIndexNumbers: 0200000003000000040000000500000008000000
   - text: "The Sun, saddened by the wolf\u2019s words, answered: \u201CAs you said
-      oh wolf of the north, your lands are far and hard to reach. "
+      oh wolf of the north, your lands are far and hard to reach.\""
     canvasIndexNumbers: 02000000030000000400000005000000
   - text: "\u201CEach morning when I passed by the forest I was saddened by having
-      to pass them by. \u201CBut I\u2019ve many places to visit, and only a day to
-      do so. \u201CI couldn\u2019t make the journey on my own.\u201D "
+      to pass them by. But I\u2019ve many places to visit, and only a day to do so.
+      I couldn\u2019t make the journey on my own.\u201D"
     canvasIndexNumbers: 02000000030000000400000005000000
   - text: "The Moon, who had been listening to Kaldur\u2019s tale, finally spoke:
-      \u201CKaldur, greatest of the wolves. I have witnessed your pack\u2019s swiftness. "
+      \u201CKaldur, greatest of the wolves. I have witnessed your pack\u2019s swiftness.\""
     canvasIndexNumbers: 030000000400000005000000090000000d000000
   - text: "\u201CIn the span of less than one of my nights you crossed the great
       northern forests \u201CAnd had ample time to hide yourselves from our heavenly
       sights. "
     canvasIndexNumbers: 030000000400000005000000090000000d000000
-  - text: "\u201CCould you not make the journey my sister does in far less time?"
+  - text: "\u201CCould you not make the journey my sister does in far less time?\""
     canvasIndexNumbers: 030000000400000005000000090000000d000000
   - text: "\u201COf course! There is not a thing on this earth or above faster than
-      our pack!\u201D The wolf, made proud by the Moon\u2019s praise, boasted in
-      response. "
+      our pack! The wolf, made proud by the Moon\u2019s praise, boasted in response.\""
     canvasIndexNumbers: 03000000040000000500000008000000
-  - text: "\u201CSo I ask of you, swift beasts of the north, to aid my sister. \u201CIf
+  - text: "\u201CSo I ask of you, swift beasts of the north, to aid my sister. If
       she had a chariot pulled by your kin, there would be no lands she couldn\u2019t
-      reach! "
+      reach!\""
     canvasIndexNumbers: 030000000400000005000000090000000d000000
   - text: "The wolf, a prideful creature by heart, furrowed its brow. \u201CBut what
-      would we get in return? "
+      would we get in return?\""
     canvasIndexNumbers: 03000000040000000500000008000000
-  - text: "\u201CEven your darkened homes would be filled with light. \u201CAnd pulling
-      my chariot, not one of you would have to go cold ever again. \u201CThe lanterns
-      that you preyed upon earlier would be with you from now until eternity.\u201D "
+  - text: "\u201CEven your darkened homes would be filled with light. And pulling
+      my chariot, not one of you would have to go cold ever again. The lanterns that
+      you preyed upon earlier would be with you from now until eternity.\u201D"
     canvasIndexNumbers: 03000000040000000500000002000000
-  - text: 'And so it is to this very day, That when the Moon sets below the horizon,
-      and the Sun begins to rise '
+  - text: And so it is to this very day, that when the Moon sets below the horizon,
+      and the Sun begins to rise
     canvasIndexNumbers: 0300000006000000070000000a0000000b0000000c000000
-  - text: "And Kaldur\u2019s pack, their stomachs full and paws warm, pull her chariot
-      You might hear a wolf\u2019s howl, coming from the east. "
+  - text: "Kaldur\u2019s pack, their stomachs full and paws warm, pull her chariot"
+    canvasIndexNumbers: 0300000006000000070000000a0000000b0000000c000000
+  - text: "You might hear a wolf\u2019s howl, coming from the east."
     canvasIndexNumbers: 0300000006000000070000000a0000000b0000000c000000
   textSpeed: 0.01
 --- !u!114 &1910987494

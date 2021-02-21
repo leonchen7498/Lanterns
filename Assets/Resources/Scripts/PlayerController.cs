@@ -35,6 +35,10 @@ public class PlayerController : MonoBehaviour
     public List<AudioClip> attackSounds;
     private AudioSource audioSource;
 
+    [Header("Other")]
+    public GameObject MovementControls;
+    public GameObject AttackControls;
+
     //private Camera camera;
 
     //Runs before all Start functions
@@ -56,6 +60,7 @@ public class PlayerController : MonoBehaviour
         animator.enabled = false;
         attackGameObject.SetActive(false);
         originalGravityScale = rb.gravityScale;
+        MovementControls.SetActive(true);
     }
 
     //Controls must be enabled and disabled with the object, otherwise it will not be read.
@@ -73,9 +78,16 @@ public class PlayerController : MonoBehaviour
         //Gets the current movement input value, used in FixedUpdate to move the player.
         direction = controls.Player.Movement.ReadValue<Vector2>();
 
-        if (direction != Vector2.zero && rb.gravityScale == 0)
+        if (direction != Vector2.zero)
         {
-            rb.gravityScale = originalGravityScale;
+            if (rb.gravityScale == 0)
+            {
+                rb.gravityScale = originalGravityScale;
+            }
+            if (MovementControls.activeSelf)
+            {
+                MovementControls.SetActive(false);
+            }
         }
 
         if (lanterns.Count > 0) {
@@ -110,6 +122,7 @@ public class PlayerController : MonoBehaviour
                 if (GetLanternCount() >= amountOfLanternsNeeded)
                 {
                     canAttack = true;
+                    AttackControls.SetActive(true);
                 }
 
                 GameManager.instance.LanternCollected(lanterns.Count); //Informs the GameManager that the player has gained a new lanterns, and reports the new amount.
@@ -122,6 +135,11 @@ public class PlayerController : MonoBehaviour
     {
         if (canAttack)
         {
+            if (AttackControls.activeSelf)
+            {
+                AttackControls.SetActive(false);
+            }
+
             canAttack = false;
             attackSpriteRenderer.sprite = attackSprites[UnityEngine.Random.Range(0, attackSprites.Count)];
             attackGameObject.SetActive(true);

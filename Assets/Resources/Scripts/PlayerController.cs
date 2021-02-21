@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
                 lanterns.Add(lantern);
                 lantern.PlayCollectSound();
 
-                if (GetLanternCount() >= amountOfLanternsNeeded)
+                if (GetLanternCount() == amountOfLanternsNeeded)
                 {
                     canAttack = true;
                     AttackControls.SetActive(true);

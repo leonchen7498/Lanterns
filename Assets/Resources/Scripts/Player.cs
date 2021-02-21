@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
     public GameObject parentGameObject;
     public PlayerController controller;
     public Image deathScreen;
+    public List<AudioClip> damageSounds;
+    private AudioSource audioSource;
 
     private bool invulnerable;
     private int currentLives;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
         dangerousCollisions = new List<Collision2D>();
         shadowCollisions = new List<Collider2D>();
         spriteColor = spriteRenderer.color;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -94,6 +97,8 @@ public class Player : MonoBehaviour
 
     private void LoseLife()
     {
+        audioSource.clip = damageSounds[Random.Range(0, damageSounds.Count)];
+        audioSource.Play();
         currentLives--;
 
         switch (currentLives)

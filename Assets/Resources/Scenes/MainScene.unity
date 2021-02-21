@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3276756c8aaa9bd4897f4be8c899d742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingSceneName: Cutscene
+  startingSceneName: Game
   fadeTime: 1
   faderCanvasGroup: {fileID: 285103125}
 --- !u!4 &343892433

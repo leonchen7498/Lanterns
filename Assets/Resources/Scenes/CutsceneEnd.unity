@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -8}
-  m_SizeDelta: {x: 1961.27, y: 1080}
+  m_AnchoredPosition: {x: -2, y: 7}
+  m_SizeDelta: {x: 1961.27, y: 1104.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &90484310
 MonoBehaviour:
@@ -303,7 +303,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1833863237}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -452,7 +452,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 497467121}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -773,6 +773,55 @@ CanvasGroup:
   m_GameObject: {fileID: 989086997}
   m_Enabled: 1
   m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!1 &1110196038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1110196039}
+  - component: {fileID: 1110196040}
+  m_Layer: 5
+  m_Name: ForestFloor (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1110196039
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110196038}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1691393853}
+  m_Father: {fileID: 1833863237}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &1110196040
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110196038}
+  m_Enabled: 1
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1181,7 +1230,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492994053}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1219,8 +1268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -52, y: 7}
-  m_SizeDelta: {x: 1168, y: 1080}
+  m_AnchoredPosition: {x: -52, y: 74}
+  m_SizeDelta: {x: 935.3, y: 949}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494927623
 MonoBehaviour:
@@ -1454,6 +1503,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641859498}
   m_CullTransparentMesh: 1
+--- !u!1 &1691393852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1691393853}
+  - component: {fileID: 1691393855}
+  - component: {fileID: 1691393854}
+  m_Layer: 5
+  m_Name: Image (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1691393853
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691393852}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1110196039}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -2, y: 15}
+  m_SizeDelta: {x: 1968.9, y: 1504}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1691393854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691393852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 61ff5775ee4c1ef4cb218ac59b548593, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1691393855
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691393852}
+  m_CullTransparentMesh: 1
 --- !u!1 &1752883133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1608,7 +1732,7 @@ RectTransform:
   m_Children:
   - {fileID: 2103370704}
   m_Father: {fileID: 1833863237}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1725,6 +1849,7 @@ RectTransform:
   - {fileID: 989086998}
   - {fileID: 1782871495}
   - {fileID: 1492994054}
+  - {fileID: 1110196039}
   - {fileID: 2006843431}
   - {fileID: 2091718887}
   - {fileID: 1826176674}
@@ -1812,6 +1937,27 @@ MonoBehaviour:
     canvasIndexNumbers: 03000000040000000500000009000000
   - text: "\u201CCould you not make the journey my sister does in far less time?"
     canvasIndexNumbers: 03000000040000000500000009000000
+  - text: "\u201COf course! There is not a thing on this earth or above faster than
+      our pack!\u201D The wolf, made proud by the Moon\u2019s praise, boasted in
+      response. "
+    canvasIndexNumbers: 03000000040000000500000008000000
+  - text: "\u201CSo I ask of you, swift beasts of the north, to aid my sister. \u201CIf
+      she had a chariot pulled by your kin, there would be no lands she couldn\u2019t
+      reach! "
+    canvasIndexNumbers: 03000000040000000500000009000000
+  - text: "The wolf, a prideful creature by heart, furrowed its brow. \u201CBut what
+      would we get in return? "
+    canvasIndexNumbers: 03000000040000000500000008000000
+  - text: "\u201CEven your darkened homes would be filled with light. \u201CAnd pulling
+      my chariot, not one of you would have to go cold ever again. \u201CThe lanterns
+      that you preyed upon earlier would be with you from now until eternity.\u201D "
+    canvasIndexNumbers: 03000000040000000500000002000000
+  - text: 'And so it is to this very day, That when the Moon sets below the horizon,
+      and the Sun begins to rise '
+    canvasIndexNumbers: 030000000600000007000000
+  - text: "And Kaldur\u2019s pack, their stomachs full and paws warm, pull her chariot
+      You might hear a wolf\u2019s howl, coming from the east. "
+    canvasIndexNumbers: 030000000600000007000000
   textSpeed: 0.02
 --- !u!114 &1910987494
 MonoBehaviour:
@@ -1926,7 +2072,7 @@ RectTransform:
   m_Children:
   - {fileID: 90484309}
   m_Father: {fileID: 1833863237}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -1941,7 +2087,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006843430}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2050,7 +2196,7 @@ RectTransform:
   m_Children:
   - {fileID: 1369850349}
   m_Father: {fileID: 1833863237}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}

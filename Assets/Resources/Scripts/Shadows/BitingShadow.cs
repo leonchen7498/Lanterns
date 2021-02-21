@@ -9,6 +9,11 @@ public class BitingShadow : MonoBehaviour
     public float waitBeforeRestingAgain = 5f;
     public float stunTimer = 3f;
     public GameObject spriteObject;
+    public Animator animator;
+
+    public List<AudioClip> startAttackSounds;
+    public List<AudioClip> getHitSounds;
+    private AudioSource audioSource;
 
     private Vector3 originalPosition;
     private GameObject playerGameObject;
@@ -16,6 +21,7 @@ public class BitingShadow : MonoBehaviour
     private bool biting;
     private bool isStunned;
     private bool playerIsInArea;
+    private float originalVolume;
 
     private Coroutine restCoroutine;
     private Coroutine stunCoroutine;
@@ -23,6 +29,9 @@ public class BitingShadow : MonoBehaviour
     void Start()
     {
         originalPosition = spriteObject.transform.position;
+        audioSource = GetComponent<AudioSource>();
+        originalVolume = audioSource.volume;
+        animator.enabled = false;
     }
 
     void FixedUpdate()
@@ -80,6 +89,14 @@ public class BitingShadow : MonoBehaviour
 
     private void StartBiting()
     {
+        animator.enabled = true;
+        if (startAttackSounds != null && startAttackSounds.Count > 0)
+        {
+            audioSource.volume = originalVolume;
+            audioSource.clip = startAttackSounds[Random.Range(0, startAttackSounds.Count)];
+            audioSource.Play();
+        }
+
         StopRestCoroutine();
         biting = true;
         resting = false;
@@ -87,6 +104,14 @@ public class BitingShadow : MonoBehaviour
 
     public void AttackedByPlayer()
     {
+        animator.enabled = false;
+        if (!isStunned && getHitSounds != null && getHitSounds.Count > 0)
+        {
+            audioSource.volume = originalVolume / 2;
+            audioSource.clip = getHitSounds[Random.Range(0, getHitSounds.Count)];
+            audioSource.Play();
+        }
+
         biting = false;
         isStunned = true;
         resting = false;
@@ -100,12 +125,14 @@ public class BitingShadow : MonoBehaviour
     private IEnumerator RestDelay()
     {
         yield return new WaitForSeconds(waitBeforeRestingAgain);
+        animator.enabled = false;
         biting = false;
         restCoroutine = null;
     }
 
     private void MoveTowardsPlayer()
     {
+        spriteObject.transform.right = playerGameObject.transform.position - spriteObject.transform.position;
         Vector3 playerPosition = playerGameObject.transform.position;
         float actualSpeed = speed * Time.deltaTime;
         Vector3 positionAfterMove = Vector3.MoveTowards(spriteObject.transform.position, playerPosition, actualSpeed);

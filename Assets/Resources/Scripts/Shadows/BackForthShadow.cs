@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BackForthShadow : MonoBehaviour
@@ -6,11 +7,15 @@ public class BackForthShadow : MonoBehaviour
     public float waitBetweenAttacks = 5.0f;
     public Transform endPositionOfAttack;
 
+    public List<AudioClip> getHitSounds;
+    private AudioSource audioSource;
+
     private Vector3 originalPosition;
     private Vector3 endPosition;
     private Vector3 currentGoalPosition;
 
     private bool isAttacked;
+    private SpriteRenderer spriteRenderer;
 
     private float waitTimer;
 
@@ -20,6 +25,9 @@ public class BackForthShadow : MonoBehaviour
         endPosition = endPositionOfAttack.position;
         currentGoalPosition = endPosition;
         waitTimer = waitBetweenAttacks;
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -39,6 +47,12 @@ public class BackForthShadow : MonoBehaviour
 
         if (collision.gameObject.tag == Constants.Tags.Attack)
         {
+            if (getHitSounds != null && getHitSounds.Count > 0)
+            {
+                audioSource.clip = getHitSounds[Random.Range(0, getHitSounds.Count)];
+                audioSource.Play();
+            }
+
             if (waitTimer < waitBetweenAttacks)
             {
                 waitTimer = 0f;
@@ -55,10 +69,12 @@ public class BackForthShadow : MonoBehaviour
                 if (distanceOfShadowToEndPosition >= distanceOfPlayerToEndPosition)
                 {
                     currentGoalPosition = originalPosition;
+                    spriteRenderer.flipX = true;
                 }
                 else
                 {
                     currentGoalPosition = endPosition;
+                    spriteRenderer.flipX = false;
                 }
             }
             else
@@ -68,10 +84,12 @@ public class BackForthShadow : MonoBehaviour
                 if (distanceOfShadowToOriginal >= distanceOfPlayerToOriginal)
                 {
                     currentGoalPosition = endPosition;
+                    spriteRenderer.flipX = false;
                 }
                 else
                 {
                     currentGoalPosition = originalPosition;
+                    spriteRenderer.flipX = true;
                 }
             }
 
@@ -114,10 +132,12 @@ public class BackForthShadow : MonoBehaviour
             if (currentGoalPosition == endPosition)
             {
                 currentGoalPosition = originalPosition;
+                spriteRenderer.flipX = true;
             }
             else
             {
                 currentGoalPosition = endPosition;
+                spriteRenderer.flipX = false;
             }
 
             isAttacked = false;

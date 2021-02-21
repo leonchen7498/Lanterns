@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2936908543835439821}
   - component: {fileID: 2936908543835439820}
   - component: {fileID: 2936908543835439823}
+  - component: {fileID: 3264820759246683919}
   m_Layer: 0
   m_Name: ChasingShadow
   m_TagString: Untagged
@@ -75,6 +76,117 @@ MonoBehaviour:
   fadeTimer: 1
   stunTimer: 3
   spriteObject: {fileID: 2936908545090175662}
+  startAttackSounds:
+  - {fileID: 8300000, guid: 4c0f494375851a347888246b3b918cda, type: 3}
+  - {fileID: 8300000, guid: 57bf16806bc79f249ae71350431c5a37, type: 3}
+  - {fileID: 8300000, guid: 6c70854a2d3c050469b79ad3569b1591, type: 3}
+  - {fileID: 8300000, guid: 35f5218d8ccd78c45a03e278cc522240, type: 3}
+  - {fileID: 8300000, guid: 05f554ebaf163704aaf34beab3dfb958, type: 3}
+  - {fileID: 8300000, guid: 11218da6f05a0774e85daaf2555c2ac0, type: 3}
+  - {fileID: 8300000, guid: 39316322d3fcec346a24687bc3e42ea5, type: 3}
+  - {fileID: 8300000, guid: dfb81bfeb31256841b4a8dfba19fda4f, type: 3}
+  getHitSounds:
+  - {fileID: 8300000, guid: b98650b804a98124a91c6048d4bb74c8, type: 3}
+  - {fileID: 8300000, guid: f8f0d67ffed4e7445a1bb8872e9c2bfc, type: 3}
+  - {fileID: 8300000, guid: c619b506024745c40939fe5b2d8e9a4d, type: 3}
+  - {fileID: 8300000, guid: 79d8af8593ab6fa4c82766800412a20c, type: 3}
+  - {fileID: 8300000, guid: cf1793b0f470a3542b82ca9d996ba5d0, type: 3}
+--- !u!82 &3264820759246683919
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936908543835439858}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2936908545090175662
 GameObject:
   m_ObjectHideFlags: 0

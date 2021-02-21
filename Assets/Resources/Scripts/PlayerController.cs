@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
         */
 
         audioSource = GetComponent<AudioSource>();
+        animator.enabled = false;
         attackGameObject.SetActive(false);
         originalGravityScale = rb.gravityScale;
     }
@@ -124,6 +125,7 @@ public class PlayerController : MonoBehaviour
             canAttack = false;
             attackSpriteRenderer.sprite = attackSprites[UnityEngine.Random.Range(0, attackSprites.Count)];
             attackGameObject.SetActive(true);
+            animator.enabled = true;
 
             audioSource.clip = attackSounds[UnityEngine.Random.Range(0, attackSounds.Count)];
             audioSource.Play();
@@ -141,6 +143,7 @@ public class PlayerController : MonoBehaviour
             attackTimer += Time.deltaTime;
             yield return null;
         }
+        animator.enabled = false;
         attackGameObject.SetActive(false);
 
         float attackDelayTimer = 0f;
